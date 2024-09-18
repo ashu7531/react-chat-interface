@@ -1,67 +1,45 @@
-import React, { useState } from "react";
-import ChatBoxComponent from "./components/ChatBoxComponent";
-import InputComponent from "./components/InputComponent";
+import React, { useState } from 'react';
+import DisplayBox from './components/DisplayBox';
+import MessageBox from './components/MessageBox';
+import DisplayHeader from './components/DisplayHeader';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
-function App() {
+const transformations = [
+  { name: "Count Words", transform: (text) => `Word count: ${text.split(' ').length}` },
+  { name: "Reverse Text", transform: (text) => `Reversed: ${text.split('').reverse().join('')}` },
+  { name: "Uppercase", transform: (text) => `Uppercase: ${text.toUpperCase()}` },
+  { name: "Lowercase", transform: (text) => `Lowercase: ${text.toLowerCase()}` },
+  { name: "Capitalize Each Word", transform: (text) => `Capitalized: ${text.replace(/\b\w/g, char => char.toUpperCase())}` },
+];
+
+const App = () => {
   const [messages, setMessages] = useState([]);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);  // Manage the theme state
 
-  // Text transformation functions
-  const transformations = [
-    {
-      name: "Uppercase",
-      func: (text) => text.toUpperCase(),
-    },
-    {
-      name: "Lowercase",
-      func: (text) => text.toLowerCase(),
-    },
-    {
-      name: "Reverse Text",
-      func: (text) => text.split("").reverse().join(""),
-    },
-    {
-      name: "Count Characters",
-      func: (text) => `Character count: ${text.length}`,
-    },
-    {
-      name: "Remove Vowels",
-      func: (text) => text.replace(/[aeiou]/gi, ""),
-    },
-  ];
+  const sendMessage = (userMessage) => {
+    if (userMessage.trim() === "") return;
+    const userMsg = { type: 'user', text: userMessage };
+    setMessages(prev => [...prev, userMsg]);
 
-  // Function to handle sending message
-  const handleSendMessage = (message) => {
-    if (message.trim() === "") return;
-
-    // Add user's message to the chat history
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { text: message, sender: "user" },
-    ]);
-
-    // Simulate bot response with delay
     setTimeout(() => {
-      // Pick a random transformation
-      const randomTransformation =
-        transformations[Math.floor(Math.random() * transformations.length)];
-      const transformedMessage = randomTransformation.func(message);
-
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          text: `Bot (${randomTransformation.name}): ${transformedMessage}`,
-          sender: "bot",
-        },
-      ]);
+      const randomTransformation = transformations[Math.floor(Math.random() * transformations.length)];
+      const botResponse = `${randomTransformation.name}: ${randomTransformation.transform(userMessage)}`;
+      const botMsg = { type: 'bot', text: botResponse };
+      setMessages(prev => [...prev, botMsg]);
     }, 1000);
   };
 
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+
   return (
-    <div className="chat-container">
-      <ChatBoxComponent messages={messages} />
-      <InputComponent onSendMessage={handleSendMessage} />
+    <div className={`chat-app ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
+      <DisplayHeader toggleTheme={toggleTheme} isDarkTheme={isDarkTheme}/>
+      <DisplayBox messages={messages} />
+      <MessageBox sendMessage={sendMessage} />
     </div>
   );
-}
+};
 
 export default App;
