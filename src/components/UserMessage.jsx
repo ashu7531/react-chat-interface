@@ -3,15 +3,13 @@ import React from 'react';
 const UserMessage = ({ message }) => {
   const getTime = () => {
     const date = new Date(message.timestamp);
-<<<<<<< HEAD
     try {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      // Preferred way of formatting the time
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // HH:MM format
     } catch (e) {
+      // Fallback in case the browser doesn't support `toLocaleTimeString`
       return `${date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
     }
-=======
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // this will display time in HH:MM format
->>>>>>> 404c651b71b9abf51497de9df84066ecbec11cc9
   };
 
   return (
