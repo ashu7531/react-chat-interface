@@ -249,8 +249,11 @@ button {
   margin-left: 10px; /* Space between input and icon */
 }
 
-.user-input .send-icon:hover {
+.light-theme .user-input .send-icon:hover {
   color: #587ccb;
+}
+.dark-theme .user-input .send-icon:hover {
+  color: #696464;
 }
 .message-time {
   font-size: 12px;
