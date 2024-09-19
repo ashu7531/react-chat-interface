@@ -7,7 +7,7 @@ const MessageBox = ({ sendMessage }) => {
   const handleSend = () => {
     if (inputValue.trim()) {
       sendMessage(inputValue);
-      setInputValue(''); // Clear input after sending
+      setInputValue('');
     }
   };
 

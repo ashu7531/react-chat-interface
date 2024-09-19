@@ -114,7 +114,7 @@ body {
   flex: 1;
   overflow-y: auto; /* Enables vertical scrolling */
   padding: 20px;
-  max-height: 500px; /* Set a reasonable max height to allow scrolling */
+  height: 100%; /* Set a reasonable max height to allow scrolling */
   background-color: #e9ecef;
   display: flex;
   flex-direction: column;
@@ -228,7 +228,7 @@ button {
   width: 80%;
   padding: auto;
   border: none; /* Remove the border */
-  background-color: white; /* White background */
+  background-color: #f3f3f3;/* White background */
   border-radius: 8px; /* Optional: to give the input rounded corners */
   outline: none; /* Remove outline on focus */
   font-size: 16px;
@@ -250,7 +250,7 @@ button {
 }
 
 .user-input .send-icon:hover {
-  color: #587ccb; /* Slight color change on hover */
+  color: #587ccb;
 }
 .message-time {
   font-size: 12px;
@@ -260,4 +260,11 @@ button {
   border-radius: 30px;
   border: none;
   outline: none;
+}
+.display-header .fa-robot {
+  font-size: 50px; /* Ensure icon size fills the space */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+.message p {
+  white-space: pre-line;
 }

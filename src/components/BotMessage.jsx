@@ -3,7 +3,7 @@ import React from 'react';
 const BotMessage = ({ message }) => {
   const getTime = () => {
     const date = new Date(message.timestamp);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Display time in HH:MM format
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (

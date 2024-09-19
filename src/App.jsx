@@ -4,26 +4,32 @@ import MessageBox from './components/MessageBox';
 import DisplayHeader from './components/DisplayHeader';
 
 const transformations = [
-  { name: "Count Words", transform: (text) => `Word count: ${text.split(' ').length}` },
-  { name: "Reverse Text", transform: (text) => `Reversed: ${text.split('').reverse().join('')}` },
-  { name: "Uppercase", transform: (text) => `Uppercase: ${text.toUpperCase()}` },
-  { name: "Lowercase", transform: (text) => `Lowercase: ${text.toLowerCase()}` },
-  { name: "Capitalize Each Word", transform: (text) => `Capitalized: ${text.replace(/\b\w/g, char => char.toUpperCase())}` },
+  { name: "Word Counter", transform: (text) => `${text.split(' ').length}` },
+  { name: "Text Reverser", transform: (text) => `${text.split('').reverse().join('')}` },
+  { name: "To Uppercase", transform: (text) => `${text.toUpperCase()}` },
+  { name: "To Lowercase", transform: (text) => `${text.toLowerCase()}` },
+  { name: "Word Capitalizer", transform: (text) => `${text.replace(/\b\w/g, char => char.toUpperCase())}` },
 ];
 
 const App = () => {
   const [messages, setMessages] = useState([]);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);  // Manage the theme state
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const sendMessage = (userMessage) => {
     if (userMessage.trim() === "") return;
-    const timestamp = new Date().toLocaleString(); // Generate a readable timestamp
+    const timestamp = new Date().toLocaleString();
     const userMsg = { type: 'user', text: userMessage, timestamp };
     setMessages(prev => [...prev, userMsg]);
   
     setTimeout(() => {
       const randomTransformation = transformations[Math.floor(Math.random() * transformations.length)];
-      const botResponse = `${randomTransformation.name}: ${randomTransformation.transform(userMessage)}`;
+      const botResponse = (
+        <span style={{alignItems: "center"}}>
+          <i className="fas fa-robot"></i>   <b>{randomTransformation.name}</b><br /> <br />{randomTransformation.transform(userMessage)}
+        </span>
+      );
+      
+      
       const botMsg = { type: 'bot', text: botResponse, timestamp: new Date().toLocaleString() };
       setMessages(prev => [...prev, botMsg]);
     }, 1000);

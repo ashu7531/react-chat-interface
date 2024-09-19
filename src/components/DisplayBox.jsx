@@ -5,12 +5,11 @@ import React, { useEffect, useRef } from 'react';
 const DisplayBox = ({ messages }) => {
   const chatEndRef = useRef(null);
 
-  // Get the date from the first message
   const getDate = () => {
     if (messages.length > 0) {
       const firstMessage = messages[0];
       const date = new Date(firstMessage.timestamp);
-      return date.toLocaleDateString(); // Format date as per your need
+      return date.toLocaleDateString();
     }
     return '';
   };
@@ -21,7 +20,6 @@ const DisplayBox = ({ messages }) => {
 
   return (
     <div className="display-box">
-      {/* Display the date once at the top */}
       {messages.length > 0 && (
         <div className="date-header-wrapper">
         <div className="divider"></div>
