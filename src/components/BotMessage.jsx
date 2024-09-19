@@ -13,7 +13,7 @@ const BotMessage = ({ message }) => {
   return (
     <div className="message bot-message">
       <p>{message.text}</p>
-      <span className="message-time">{getTime()}</span>
+      <span className="message-time">{getTime()}</span> {/* showing the time */}
     </div>
   );
 };

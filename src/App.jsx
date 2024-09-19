@@ -12,17 +12,17 @@ const transformations = [
 ];
 
 const App = () => {
-  const [messages, setMessages] = useState([]);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [messages, setMessages] = useState([]); //  array of messages text 
+  const [isDarkTheme, setIsDarkTheme] = useState(false); // theme changing state
 
   const sendMessage = (userMessage) => {
     if (userMessage.trim() === "") return;
     const timestamp = new Date().toLocaleString();
     const userMsg = { type: 'user', text: userMessage, timestamp };
-    setMessages(prev => [...prev, userMsg]);
+    setMessages(prev => [...prev, userMsg]);   // appending latest user message to the array at the end
   
     setTimeout(() => {
-      const randomTransformation = transformations[Math.floor(Math.random() * transformations.length)];
+      const randomTransformation = transformations[Math.floor(Math.random() * transformations.length)]; // choosing random text transformations
       const botResponse = (
         <span style={{alignItems: "center"}}>
           <i className="fas fa-robot"></i>   <b>{randomTransformation.name}</b><br /> <br />{randomTransformation.transform(userMessage)}
@@ -32,19 +32,20 @@ const App = () => {
       
       const botMsg = { type: 'bot', text: botResponse, timestamp: new Date().toLocaleString() };
       setMessages(prev => [...prev, botMsg]);
-    }, 1000);
+    }, 1000); //  delaying for 1 second
+    
   };
   
 
-  const toggleTheme = () => {
+  const toggleTheme = () => { // changing theme
     setIsDarkTheme(!isDarkTheme);
   };
 
   return (
     <div className={`chat-app ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
-      <DisplayHeader toggleTheme={toggleTheme} isDarkTheme={isDarkTheme}/>
-      <DisplayBox messages={messages} />
-      <MessageBox sendMessage={sendMessage} />
+      <DisplayHeader toggleTheme={toggleTheme} isDarkTheme={isDarkTheme}/>  {/* displaying the header */}
+      <DisplayBox messages={messages} />  {/* displaying the messages */}
+      <MessageBox sendMessage={sendMessage} /> {/* displaying the message box */}
     </div>
   );
 };

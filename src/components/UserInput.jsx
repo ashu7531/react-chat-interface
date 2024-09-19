@@ -1,6 +1,7 @@
 import React from 'react';
 
 const UserInput = ({ value, onChange, onSend }) => {
+  // this is func to handle the "Enter" keyword press to send the message
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       onSend();
