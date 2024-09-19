@@ -9,25 +9,29 @@ const DisplayBox = ({ messages }) => {
     if (messages.length > 0) {
       const firstMessage = messages[0];
       const date = new Date(firstMessage.timestamp);
-      return date.toLocaleDateString();
+      try {
+        return date.toLocaleDateString();
+      } catch (e) {
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+      }
     }
     return '';
   };
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   return (
     <div className="display-box">
       {messages.length > 0 && (
         <div className="date-header-wrapper">
-        <div className="divider"></div>
-        <div className="date-header">
-          <p>{getDate()}</p>
+          <div className="divider"></div>
+          <div className="date-header">
+            <p>{getDate()}</p>
+          </div>
+          <div className="divider"></div>
         </div>
-        <div className="divider"></div>
-      </div>
       )}
 
       {messages.map((msg, index) =>
@@ -44,6 +48,3 @@ const DisplayBox = ({ messages }) => {
 };
 
 export default DisplayBox;
-
-
-

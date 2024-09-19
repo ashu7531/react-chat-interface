@@ -3,7 +3,11 @@ import React from 'react';
 const UserMessage = ({ message }) => {
   const getTime = () => {
     const date = new Date(message.timestamp);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Display time in HH:MM format
+    try {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+      return `${date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
+    }
   };
 
   return (
@@ -15,4 +19,3 @@ const UserMessage = ({ message }) => {
 };
 
 export default UserMessage;
-
