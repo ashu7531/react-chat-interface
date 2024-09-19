@@ -16,7 +16,33 @@ Check out the live demo of the project here: [React Chat Bot Demo](https://ashu7
 
 The bot randomly selects from the following transformations:
 - Word count
-- Vowel and consonant count
-- Most frequent letter finder
+- Word capitalisation
+- Text to Uppercase 
 - Text reversal
-- Word jumbling
+- Text to Lowercase
+
+## Setup and Running Locally
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/ashu7531/react-chat-interface
+   ```
+2. Navigate to the project directory:
+   ```
+   cd react-chat-bot
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the development server:
+   ```
+   npm run dev
+   ```
+5. Open your browser and visit `http://localhost:5173/react-chat-interface/`
+
+## Technologies Used
+
+- React
+- CSS
+- JavaScript

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 
 const DisplayBox = ({ messages }) => {
   const chatEndRef = useRef(null);
-
+  // this func is used to get the date
   const getDate = () => {
     if (messages.length > 0) {
       const firstMessage = messages[0];
@@ -13,7 +13,7 @@ const DisplayBox = ({ messages }) => {
     }
     return '';
   };
-
+  // scrolling chat box
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -24,17 +24,18 @@ const DisplayBox = ({ messages }) => {
         <div className="date-header-wrapper">
         <div className="divider"></div>
         <div className="date-header">
-          <p>{getDate()}</p>
+        {/* // displaying  the date on header */}
+          <p>{getDate()}</p> 
         </div>
         <div className="divider"></div>
       </div>
       )}
-
+      {/* showing the messages for both user and bot */}
       {messages.map((msg, index) =>
         msg.type === 'user' ? (
-          <UserMessage key={index} message={msg} />
+          <UserMessage key={index} message={msg} /> // message user
         ) : (
-          <BotMessage key={index} message={msg} />
+          <BotMessage key={index} message={msg} /> // message bot
         )
       )}
 
