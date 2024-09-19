@@ -16,7 +16,7 @@ const UserInput = ({ value, onChange, onSend }) => {
         onKeyPress={handleKeyPress}
         placeholder="Type a message..."
       />
-      <button onClick={onSend}>Send</button>
+      <i class="fas fa-paper-plane send-icon" onClick={onSend}></i>
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DisplayBox from './components/DisplayBox';
 import MessageBox from './components/MessageBox';
 import DisplayHeader from './components/DisplayHeader';
-import ThemeSwitcher from './components/ThemeSwitcher';
 
 const transformations = [
   { name: "Count Words", transform: (text) => `Word count: ${text.split(' ').length}` },
@@ -18,16 +17,18 @@ const App = () => {
 
   const sendMessage = (userMessage) => {
     if (userMessage.trim() === "") return;
-    const userMsg = { type: 'user', text: userMessage };
+    const timestamp = new Date().toLocaleString(); // Generate a readable timestamp
+    const userMsg = { type: 'user', text: userMessage, timestamp };
     setMessages(prev => [...prev, userMsg]);
-
+  
     setTimeout(() => {
       const randomTransformation = transformations[Math.floor(Math.random() * transformations.length)];
       const botResponse = `${randomTransformation.name}: ${randomTransformation.transform(userMessage)}`;
-      const botMsg = { type: 'bot', text: botResponse };
+      const botMsg = { type: 'bot', text: botResponse, timestamp: new Date().toLocaleString() };
       setMessages(prev => [...prev, botMsg]);
     }, 1000);
   };
+  
 
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
