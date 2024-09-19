@@ -4,7 +4,7 @@ This project implements a simple chat interface using React, featuring a bot tha
 
 ## Live Demo
 
-Check out the live demo of the project here: [React Chat Bot Demo](https://your-deployed-link-here.com)
+Check out the live demo of the project here: [React Chat Bot Demo](https://ashu7531.github.io/react-chat-interface/)
 
 ## Features
 
